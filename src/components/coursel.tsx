@@ -17,7 +17,7 @@ function Coursel() {
       </div>
       <div id="slide2" className="carousel-item relative w-full">
         <img
-          src="https://p2.bahamut.com.tw/B/2KU/30/8786f0540022870337ac4a7fc111jeu5.JPG"
+          src="ad-4.JPG"
           className="w-full"
         />
         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -31,7 +31,7 @@ function Coursel() {
       </div>
       <div id="slide3" className="carousel-item relative w-full">
         <img
-          src="https://p2.bahamut.com.tw/B/2KU/30/8786f0540022870337ac4a7fc111jeu5.JPG"
+          src="ad-2.jpg"
           className="w-full"
         />
         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -45,7 +45,7 @@ function Coursel() {
       </div>
       <div id="slide4" className="carousel-item relative w-full">
         <img
-          src="https://p2.bahamut.com.tw/B/2KU/30/8786f0540022870337ac4a7fc111jeu5.JPG"
+          src="ad-3.jpg"
           className="w-full"
         />
         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
