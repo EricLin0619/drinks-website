@@ -1,7 +1,7 @@
 export default function LoginButton() {
     return (
         <>
-        <button className="btn btn-outline btn-error p-2 h-4">Info</button>
+        <button className="btn btn-success mr-4">登入</button>
         </>
       );
 }
