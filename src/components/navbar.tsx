@@ -5,9 +5,10 @@ export default function Navbar() {
   return (
     <div className="navbar bg-[#1FA6E0]">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl text-black">得負</a>
+        <img src="https://cdn-icons-png.flaticon.com/512/5821/5821159.png" alt="bubble-tea" className="ml-8 w-12 h-12 cursor-pointer"/>
+        <a className="btn btn-ghost text-2xl text-black">下次一訂</a>
       </div>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="mr-32">
         <LoginButton/>
         <RegisterButton/>
       </div>
