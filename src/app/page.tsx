@@ -1,7 +1,10 @@
+"use client"
 import Coursel from "../components/coursel";
 import Sidebar from "../components/sidebar";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter()
   return (
     <main className="grow">
       <section className="flex mt-8 w-2/3 mx-auto">
@@ -10,7 +13,7 @@ export default function Home() {
       </section>
       <section className="w-2/3 mx-auto mt-8">
         <p className="text-2xl mb-4 text-blue-700 font-bold">
-          用心泡好茶的得負
+          用心泡好茶的下次一訂
         </p>
         <p className="text-black">
           得負創立於1987年，秉持踏實穩健、創發精進的經營理念，在手搖飲料店櫛比鱗次的台灣，一本用心泡好茶的初衷，傳遞喝好茶的幸福，始終堅持「手搖」傳統，並提供「客製化」的專業服務。
@@ -19,7 +22,7 @@ export default function Home() {
       </section>
       <section className="w-2/3 mx-auto mt-8">
         <p className="text-2xl mb-4 text-blue-700 font-bold">
-          得負手搖飲料系列介紹
+        下次一訂手搖飲料系列介紹
         </p>
         <p className="text-black mb-4">
           清心福全飲品菜單可分為茗品、奶茶、鮮奶／拿鐵、特調、季節鮮果、冬瓜、優多、冰淇淋、果醋等系列，各有獨到的風味與口感，以提供消費者全方位、多樣化的手搖飲料推薦選擇。

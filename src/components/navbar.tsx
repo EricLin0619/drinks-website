@@ -6,7 +6,7 @@ export default function Navbar() {
     <div className="navbar bg-[#1FA6E0]">
       <div className="flex-1">
         <img src="https://cdn-icons-png.flaticon.com/512/5821/5821159.png" alt="bubble-tea" className="ml-8 w-12 h-12 cursor-pointer"/>
-        <a className="btn btn-ghost text-2xl text-black">得負</a>
+        <a className="btn btn-ghost text-2xl text-black">下次一訂</a>
       </div>
       <div className="mr-32">
         <LoginButton/>
