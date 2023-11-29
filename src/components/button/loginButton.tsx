@@ -1,6 +1,14 @@
 'use client';
 import axios from 'axios';
+import { useState } from 'react';
+import { useRouter } from "next/navigation";
 export default function LoginButton() {
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const router = useRouter()
+
   const handleButtonClick = async () => {
     if (document) {
       (document.getElementById("login_modal") as HTMLFormElement).showModal();
@@ -8,7 +16,29 @@ export default function LoginButton() {
   }
 
   function login() {
+      
+      if(!username) {
+        return alert("username is empty")
+      }
+      
+      if(!password) {
+        return alert("password is empty")
+      }
 
+      axios.post("http://localhost:8090/api/authenticate", {
+          'username': username,
+          'password': password,
+          'rememberMe': true
+      }).then(response => {
+        console.log(response);
+        sessionStorage.setItem("jwt", response.data.id_token);
+        (document.getElementById("login_modal") as HTMLFormElement).close();
+        setUsername('')
+        setPassword('')
+        location.reload()
+      }).catch(error => {
+        console.log(error)
+      })
   }
 
   return (
@@ -24,9 +54,9 @@ export default function LoginButton() {
       <dialog id="login_modal" className="modal">
         <div className="modal-box bg-white text-black p-10">
           <h3 className="font-bold text-lg text-center">請輸入您註冊的電子郵件及密碼</h3>
-          <input type="text" placeholder="電子郵件帳號" className="input input-bordered w-full bg-white mt-4 text-white"/>
-          <input type="text" placeholder="密碼" className="input input-bordered w-full bg-white mt-4 text-white"/>
-          <button className="btn btn-success mt-4 w-full" onClick={() => alert("登入")}>登入</button>
+          <input type="text" placeholder="帳號" className="input input-bordered w-full bg-white mt-4 text-white" onChange = {(e) => setUsername(e.target.value)}/>
+          <input type="password" placeholder="密碼" className="input input-bordered w-full bg-white mt-4 text-white" onChange = {(e) => setPassword(e.target.value)}/>
+          <button className="btn btn-success mt-4 w-full" onClick={() => login()}>登入</button>
         </div>
         <form method="dialog" className="modal-backdrop">
           <button>close</button>
