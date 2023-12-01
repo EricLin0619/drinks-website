@@ -1,8 +1,8 @@
 "use client"
 import LoginButton from "./button/loginButton";
 import RegisterButton from "./button/registerButton";
-import LogoutButton from "./button/logoutButton";
 import { useRouter } from "next/navigation";
+import LogoutButton from "./button/logoutButton";
 import { jwtDecode } from 'jwt-decode'
 import { useEffect, useState } from "react";
 
@@ -34,7 +34,6 @@ export default function Navbar() {
       return jwtDecode(jwtToken).sub
     }
   }
-
   return (
     <div className="navbar bg-[#1FA6E0] shadow-xl">
       <div className="flex-1" onClick={()=>{router.push("/")}}>
@@ -42,7 +41,7 @@ export default function Navbar() {
         <a className="btn btn-ghost text-2xl text-black">下次一訂</a>
       </div>
       <div className="mr-32">
-        { !(login) ? 
+      { !(login) ? 
           <>
             <LoginButton/>
             <RegisterButton/>

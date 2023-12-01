@@ -1,8 +1,18 @@
-import DrinkCard from "@/components/drinkCard";
+import DrinkCard from "@/components/card/drinkCard";
+import testData from "./testData.json";
 function Page() {
   return (
     <section className="mx-auto w-2/3 grid grid-cols-2 justify-items-center gap-4 my-8">
-      <DrinkCard
+      {testData.map((drink, index) => (
+        <DrinkCard
+          key={index}
+          name={drink.name}
+          price={drink.price}
+          imageURL={drink.imageUrl}
+          description={drink.description}
+        />
+      ))}
+      {/* <DrinkCard
         name={"珍珠奶茶"}
         price={75}
         imageURL={
@@ -51,7 +61,7 @@ function Page() {
         description={
           "【L杯】總糖量59公克．總熱量366大卡【XL杯】總糖量75公克．總熱量455大卡∣咖啡因總含量：黃101-200mg/杯∣茶葉原產地：緬甸、台灣"
         }
-      />
+      /> */}
     </section>
   );
 }
