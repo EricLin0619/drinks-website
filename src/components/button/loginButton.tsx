@@ -25,7 +25,7 @@ export default function LoginButton() {
         return alert("password is empty")
       }
 
-      axios.post("http://localhost:8090/api/authenticate", {
+      axios.post(process.env.api + "/authenticate", {
           'username': username,
           'password': password,
           'rememberMe': true
