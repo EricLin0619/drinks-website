@@ -1,4 +1,5 @@
-import DrinkCard from "@/components/card/drinkCard";
+import React from "react";
+import DrinkCard from "../../components/card/drinkCard";
 import testData from "./testData.json";
 function Page() {
   return (
@@ -8,7 +9,7 @@ function Page() {
           key={index}
           name={drink.name}
           price={drink.price}
-          imageURL={drink.imageUrl}
+          imageUrl={drink.imageUrl}
           description={drink.description}
         />
       ))}
