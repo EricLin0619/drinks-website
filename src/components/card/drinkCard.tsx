@@ -1,7 +1,8 @@
+import React from "react";
 import AddDrinkButton from "../button/addDrinkButton";
-import React from 'react'
+import { DrinkCardType } from "../../type";
 
-function DrinkCard(props: any) {
+function DrinkCard(props: DrinkCardType) {
   return (
     <div className={`w-full bg-white shadow-lg p-4 rounded relative`}>
       <div className="flex items-center">
@@ -13,13 +14,13 @@ function DrinkCard(props: any) {
           <p className="text-black font-bold ">{`$${props.price}`}</p>
         </div>
         <img
-          src={props.imageURL}
+          src={props.imageUrl}
           className="w-1/3 rounded"
           alt=""
         />
       </div>
       <div className={`flex bg-white  w-8 h-8 rounded-full absolute right-6 bottom-8`}>
-        <AddDrinkButton/>
+        <AddDrinkButton name={props.name} price={props.price} imageUrl={props.imageUrl}/>
       </div>
     </div>
   );
