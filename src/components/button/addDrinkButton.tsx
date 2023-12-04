@@ -1,5 +1,6 @@
 "use client";
 import { RxCross2 } from "react-icons/rx";
+import React from 'react'
 
 function AddDrinkButton() {
   const handleButtonClick = async () => {

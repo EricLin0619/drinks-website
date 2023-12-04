@@ -1,5 +1,5 @@
-import styles from "../app/drinks/styles.module.css";
 import AddDrinkButton from "../button/addDrinkButton";
+import React from 'react'
 
 function DrinkCard(props: any) {
   return (

@@ -1,4 +1,5 @@
 "use client"
+import React from 'react'
 import LoginButton from "./button/loginButton";
 import RegisterButton from "./button/registerButton";
 import { useRouter } from "next/navigation";
@@ -17,7 +18,7 @@ export default function Navbar() {
 
   function checkToken() {
     if(jwtToken != null) {
-      if(jwtDecode(jwtToken).exp > Math.floor(Date.now()/1000)) {
+      if(jwtDecode(jwtToken).exp as any > Math.floor(Date.now()/1000)) {
         return true
       }
       else {
