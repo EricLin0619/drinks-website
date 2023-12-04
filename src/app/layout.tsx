@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import  { UserContextProvider } from './Context/store';
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import "./globals.css";
@@ -16,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-screen">
       <body className="min-h-full bg-white flex flex-col">
-        <Navbar />
-        {children}
-        <Footer />
+        <UserContextProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </UserContextProvider>
       </body>
     </html>
   );
