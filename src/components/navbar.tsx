@@ -9,14 +9,16 @@ import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const router = useRouter()
-  const jwtToken = sessionStorage.getItem('jwt')
   const [login, setLogin] = useState(false)
+  const [username, setUsername] = useState('')
 
   useEffect(() => {
-    setLogin(checkToken())
+    const jwtToken = sessionStorage.getItem('jwt')
+    setLogin(checkToken(jwtToken))
+    setUsername(getUsername(jwtToken))
   },[login])
 
-  function checkToken() {
+  function checkToken(jwtToken: string) {
     if(jwtToken != null) {
       if(jwtDecode(jwtToken).exp as any > Math.floor(Date.now()/1000)) {
         return true
@@ -30,7 +32,7 @@ export default function Navbar() {
     }
   }
 
-  function getUsername() {
+  function getUsername(jwtToken: string) {
     if(jwtToken != null) {
       return jwtDecode(jwtToken).sub
     }
@@ -54,7 +56,7 @@ export default function Navbar() {
           </>
           :
           <>
-            <p className="px-5 text-black">{getUsername()} 您好</p>
+            <p className="px-5 text-black">{username} 您好</p>
             <LogoutButton/>
           </>
         }
