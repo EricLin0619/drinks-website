@@ -46,6 +46,7 @@ export default function Navbar() {
           <>
             <LoginButton/>
             <RegisterButton/>
+            <img src="./shopping-cart.png" alt="shopping-cart" className='w-8 h-8 cursor-pointer' onClick={()=>{router.push("./shoppingCart")}}/>
           </>
           :
           <>
