@@ -16,7 +16,7 @@ function DrinkCard(props: DrinkCardType) {
         <img
           src={props.imageUrl}
           className="w-1/3 rounded"
-          alt=""
+          alt={props.name}
         />
       </div>
       <div className={`flex bg-white  w-8 h-8 rounded-full absolute right-6 bottom-8`}>
