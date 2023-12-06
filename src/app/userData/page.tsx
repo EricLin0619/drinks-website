@@ -1,6 +1,6 @@
 function Page() {
   return (
-    <main className="w-1/3 rounded-md shadow-md mx-auto mt-10 p-6">
+    <main className="w-1/3 rounded-md shadow-md mx-auto mt-10 p-6 text-black">
       <p className="text-2xl font-bold text-black">我的帳戶</p>
       <div className="label">
         <span className="label-text mt-4">姓名</span>
@@ -16,6 +16,14 @@ function Page() {
       <input
         type="text"
         placeholder="0967849855"
+        className="bg-white p-2 border-2 rounded-md block w-full"
+      />
+      <div className="label">
+        <span className="label-text mt-4">送餐地址</span>
+      </div>
+      <input
+        type="text"
+        placeholder="桃園市中壢區中大路300號"
         className="bg-white p-2 border-2 rounded-md block w-full"
       />
       <div className="label">

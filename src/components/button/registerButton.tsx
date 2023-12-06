@@ -35,6 +35,11 @@ export default function RegisterButton() {
           />
           <input
             type="text"
+            placeholder="送餐地址"
+            className="bg-white p-2 border-2 rounded-md block w-full mt-4"
+          />
+          <input
+            type="text"
             placeholder="電子郵件"
             className="bg-white p-2 border-2 rounded-md block w-full mt-4"
           />
