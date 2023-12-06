@@ -1,0 +1,44 @@
+[{
+    "orderNumber":"A123456",
+    "customerName":"林阿冠",
+    "customerPhone":"0912345678",
+    "method":"自取",
+    "content":[
+     {
+        "name":"珍珠奶茶",
+        "price":50,
+        "quantity":1,
+        "ice":"微冰",
+        "sugar":"半糖"
+     },
+     {
+        "name":"橙芝汗",
+        "price":75,
+        "quantity":1,
+        "ice":"微冰",
+        "sugar":"半糖"
+     }
+    ]
+},
+{
+    "orderNumber":"A123456",
+    "customerName":"林阿冠",
+    "customerPhone":"0912345678",
+    "method":"外送",
+    "content":[
+     {
+        "name":"珍珠奶茶",
+        "price":50,
+        "quantity":1,
+        "ice":"微冰",
+        "sugar":"半糖"
+     },
+     {
+        "name":"橙芝汗",
+        "price":75,
+        "quantity":1,
+        "ice":"微冰",
+        "sugar":"半糖"
+     }
+    ]
+}]

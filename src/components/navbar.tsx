@@ -50,6 +50,7 @@ export default function Navbar() {
             <img src="./user.png" alt="shopping-cart" className='w-7 h-7 cursor-pointer ml-4' onClick={()=>{router.push("./userData")}}/>
             <img src="./user.png" alt="shopping-cart" className='w-7 h-7 cursor-pointer ml-4' onClick={()=>{router.push("./Userhistory")}}/>
             <img src="./store.png" alt="shopping-cart" className='w-7 h-7 cursor-pointer ml-4' onClick={()=>{router.push("./store")}}/>
+            <span className="cursor-pointer text-black ml-4" onClick={()=>{router.push("./orderManagement")}}>接單</span>
           </>
           :
           <>
