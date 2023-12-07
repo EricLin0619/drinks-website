@@ -1,33 +1,17 @@
-import testData from './testData.json';
+import historyTestData from "./HistorytestData.json";
+import currentTestData from "./CurrentOrderTestData.json";
+import HistoryCard from "./components/historyOrderCard";
+import CurrentCard from "./components/currentOrderCard";
 
 function Page() {
   return (
     <main className="w-1/2 rounded-md shadow-md mt-10 mx-auto p-6">
-      <p className="text-2xl font-bold text-black">歷史訂單</p>
-      {testData.map((order, index) => {
+      <p className="text-2xl font-bold text-black">當前訂單</p>
+      <CurrentCard time={currentTestData.time} drinks={currentTestData.drinks}/>
+      <p className="text-2xl font-bold text-black mt-10">歷史訂單</p>
+      {historyTestData.map((order, index) => {
         return (
-          <div
-            key={index}
-            className="w-full rounded-md shadow-md mt-4 text-black p-6"
-          >
-            <p className="text-xl font-bold">
-              {order.time}
-            </p>
-            <div className="grid grid-cols-1 gap-2 mt-2">
-              {order.drinks.map((drink, index) => {
-                return (
-                  <div key={index} className="flex">
-                    <p>{drink.quantity}x</p>
-                    <div className="ml-2">
-                      <p>{drink.name}</p>
-                      <p className="text-slate-400">{drink.sugar}{drink.ice}</p>
-                    </div>
-                    <p className="ml-auto">$ {drink.price}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          <HistoryCard key={index} time={order.time} drinks={order.drinks} />
         );
       })}
     </main>

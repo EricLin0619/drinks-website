@@ -1,0 +1,19 @@
+{
+  "time": "2023年 4月20日 下午5:41",
+  "drinks": [
+    {
+      "name": "拾JOE芝麻歐蕾",
+      "sugar": "無糖",
+      "ice": "微冰",
+      "price": 75,
+      "quantity": 1
+    },
+    {
+      "name": "橙芝汗",
+      "sugar": "半糖",
+      "ice": "去冰",
+      "price": 87,
+      "quantity": 1
+    }
+  ]
+}
