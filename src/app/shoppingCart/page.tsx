@@ -1,11 +1,15 @@
+"use client"
+import { useRouter } from "next/navigation";
+
 function Page() {
+  const router = useRouter();
   return (
     <main className="w-2/3 mx-auto flex mt-10">
       <section className="w-1/2 mr-4">
         <div className="rounded-md shadow-md p-6">
           <div className="flex items-center justify-between">
             <p className="text-2xl font-bold text-black">送餐地址</p>
-            <p className="text-red-300 font-bold cursor-pointer">更改地址</p>
+            <p className="text-red-400 font-bold cursor-pointer" onClick={()=>{router.push("./userData")}}>更改地址</p>
           </div>
           <p className="text-black mt-8">桃園市中壢區中大路300號</p>
           <p className="text-sm">
@@ -16,17 +20,41 @@ function Page() {
         </div>
         <div className="rounded-md shadow-md p-6 mt-8">
           <p className="text-2xl font-bold text-black">送達時間</p>
-          <input type="date" id="birthday" name="birthday" className="p-2 shadow-md rounded bg-slate-200 text-black mt-4 mr-4"></input>
-          <input type="time" id="appt" name="appt" min="09:00" max="18:00"  className="p-2 shadow-md rounded bg-slate-200 text-black" required />
+          <input
+            type="date"
+            id="birthday"
+            name="birthday"
+            className="p-2 shadow-md rounded bg-slate-200 text-black mt-4 mr-4"
+          ></input>
+          <input
+            type="time"
+            id="appt"
+            name="appt"
+            min="09:00"
+            max="18:00"
+            className="p-2 shadow-md rounded bg-slate-200 text-black"
+            required
+          />
         </div>
         <div className="rounded-md shadow-md p-6 mt-8">
           <div className="flex items-center justify-between">
             <p className="text-2xl font-bold text-black">個人資料</p>
-            <p className="text-red-300 font-bold cursor-pointer">更改資料</p>
+            <p className="text-red-400 font-bold cursor-pointer" onClick={()=>{router.push("./userData")}}>
+              更改資料
+            </p>
           </div>
           <p className="mt-8">林阿冠</p>
           <p>0957893756</p>
           <p>1234@gmail.com</p>
+        </div>
+        <div className="rounded-md shadow-md p-6 mt-8">
+          <p className="text-2xl font-bold text-black">優惠卷</p>
+          <input
+            type="text"
+            name="coupon"
+            placeholder="輸入優惠卷代碼"
+            className="p-2 rounded-md bg-white shadow-md mt-4 text-black"
+          />
         </div>
         <div className="rounded-md shadow-md p-6 mt-8">
           <p className="text-2xl font-bold text-black">付款方式</p>
@@ -47,7 +75,9 @@ function Page() {
             <p className="text-black">Line pay</p>
           </div>
         </div>
-        <button className="btn btn-info mt-8 w-full text-center">完成並付款</button>
+        <button className="btn btn-info mt-8 w-full text-center">
+          完成並付款
+        </button>
       </section>
       <section className="w-1/2 shadow-md rounded-md p-6 flex flex-col">
         <div className="">

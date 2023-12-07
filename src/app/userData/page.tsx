@@ -34,7 +34,7 @@ function Page() {
         placeholder="1234@gmail.com"
         className="bg-white p-2 border-2 rounded-md block w-full"
       />
-      <button className="text-black rounded-md btn mt-4 btn-error">儲存</button>
+      <button className="text-black rounded-md btn mt-4 bg-red-400 border-none">儲存</button>
       <p className="text-2xl font-bold text-black mt-12">密碼</p>
       <div className="label">
         <span className="label-text mt-4">現有密碼</span>
@@ -52,7 +52,7 @@ function Page() {
         placeholder=""
         className="bg-white p-2 border-2 rounded-md block w-full"
       />
-      <button className="text-black rounded-md btn mt-4 btn-error">儲存</button>
+      <button className="text-black rounded-md btn mt-4 bg-red-400 border-none">儲存</button>
     </main>
   );
 }
