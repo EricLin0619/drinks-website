@@ -1,5 +1,14 @@
 "use client";
+import axios from "axios";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 export default function RegisterButton() {
+  const [createBy, setCreateBy] = useState("");
+  const [email, setEmail] = useState("");
+  const [login, setLogin] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const handleButtonClick = async () => {
     if (document) {
       (
@@ -7,6 +16,50 @@ export default function RegisterButton() {
       ).showModal();
     }
   };
+
+  function register() {
+    if (!name) {
+      return alert("name is empty");
+    }
+    if (!password) {
+      return alert("password is empty");
+    }
+    if (!email) {
+      return alert("email is empty");
+    }
+    if (!phoneNumber) {
+      return alert("phoneNumber is empty");
+    }
+    if (!login) {
+      return alert("login is empty");
+    }
+
+    setCreateBy(name);
+
+    axios
+      .post(process.env.api + "/register", {
+        createBy: createBy,
+        email: email,
+        login: login,
+        name: name,
+        password: password,
+        phoneNumber: phoneNumber,
+      })
+      .then((response) => {
+        console.log(response);
+        (document.getElementById("register_modal") as HTMLFormElement).close();
+        setPassword("");
+        setCreateBy("");
+        setEmail("");
+        setLogin("");
+        setName("");
+        setPhoneNumber("");
+        location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   return (
     <>
@@ -27,28 +80,33 @@ export default function RegisterButton() {
             type="text"
             placeholder="姓名"
             className="bg-white p-2 border-2 rounded-md block w-full mt-4"
+            onChange = {(e) => setName(e.target.value)}
           />
           <input
             type="text"
             placeholder="電話"
             className="bg-white p-2 border-2 rounded-md block w-full mt-4"
+            onChange = {(e) => setPhoneNumber(e.target.value)}
           />
           <input
             type="text"
-            placeholder="送餐地址"
+            placeholder="帳號名稱"
             className="bg-white p-2 border-2 rounded-md block w-full mt-4"
+            onChange = {(e) => setLogin(e.target.value)}
           />
           <input
             type="text"
             placeholder="電子郵件"
             className="bg-white p-2 border-2 rounded-md block w-full mt-4"
+            onChange = {(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
             placeholder="密碼"
             className="bg-white p-2 border-2 rounded-md block w-full mt-4"
+            onChange = {(e) => setPassword(e.target.value)}
           />
-          <button className="btn btn-warning mt-4 w-full">註冊</button>
+          <button className="btn btn-warning mt-4 w-full" onClick={() => register()}>註冊</button>
         </div>
         <form method="dialog" className="modal-backdrop">
           <button>close</button>

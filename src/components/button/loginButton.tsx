@@ -61,11 +61,13 @@ export default function LoginButton() {
             type="text"
             placeholder="電子郵件"
             className="bg-white p-2 border-2 rounded-md block w-full mt-4"
+            onChange = {(e) => setUsername(e.target.value)}
           />
           <input
-            type="text"
+            type="password"
             placeholder="密碼"
             className="bg-white p-2 border-2 rounded-md block w-full mt-4"
+            onChange = {(e) => setPassword(e.target.value)}
           />
           <button
             className="btn btn-success mt-4 w-full"
