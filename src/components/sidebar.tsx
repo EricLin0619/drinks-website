@@ -10,7 +10,7 @@ function Sidebar  () {
             </div>
             <div className="w-auto flex items-center h-1/4 justify-center ">
                 <img src="information.png" alt="bubble-tea" className="w-1/5 cursor-pointer"/>
-                <p className="text-black text-xl cursor-pointer">關於得負</p>
+                <p className="text-black text-xl cursor-pointer">關於我們</p>
             </div>
             <div className="w-auto flex items-center h-1/4 justify-center ">
                 <img src="location.png" alt="bubble-tea" className="w-1/4 cursor-pointer"/>

@@ -18,3 +18,10 @@ export type UnaccptedOrderCardType = {
     method: string;
     content: Array<any>
 }
+
+export type AlterDrinksType = {
+    name: string;
+    price: number;
+    imageUrl: string;
+    description: string;
+}

@@ -9,7 +9,7 @@ function Page() {
         <div className="rounded-md shadow-md p-6">
           <div className="flex items-center justify-between">
             <p className="text-2xl font-bold text-black">送餐地址</p>
-            <p className="text-red-300 font-bold cursor-pointer" onClick={()=>{router.push("./userData")}}>更改地址</p>
+            <p className="text-red-400 font-bold cursor-pointer" onClick={()=>{router.push("./userData")}}>更改地址</p>
           </div>
           <p className="text-black mt-8">桃園市中壢區中大路300號</p>
           <p className="text-sm">
@@ -39,7 +39,7 @@ function Page() {
         <div className="rounded-md shadow-md p-6 mt-8">
           <div className="flex items-center justify-between">
             <p className="text-2xl font-bold text-black">個人資料</p>
-            <p className="text-red-300 font-bold cursor-pointer" onClick={()=>{router.push("./userData")}}>
+            <p className="text-red-400 font-bold cursor-pointer" onClick={()=>{router.push("./userData")}}>
               更改資料
             </p>
           </div>
