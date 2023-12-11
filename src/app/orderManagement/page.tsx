@@ -1,6 +1,6 @@
 import UnaccptedOrderCard from "./components/unaccptedOrderCard";
 import UnsolvedOrderCard from "./components/unsolvedOrderCard";
-import unacceptedOrderTestData from "./unacceptedOrderTestData.json";
+import unacceptedOrderTestData from "./unacceptedOrdertestData.json";
 import unsolvedOrderTestData from "./unsolvedOrderTestData.json";
 
 function Page() {
@@ -26,7 +26,7 @@ function Page() {
       <section className="w-1/3 shadow-md rounded-md mt-10 p-6">
         <p className="text-2xl font-bold text-black mb-8">處理中</p>
         <div className="grid grid-cols-1 gap-10">
-          {unacceptedOrderTestData.map((order, index) => {
+          {unsolvedOrderTestData.map((order, index) => {
             return (
               <UnsolvedOrderCard
                 key={index}
