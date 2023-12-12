@@ -5,9 +5,15 @@ export type AddDrinkButtonType = {
 };
 
 export type DrinkCardType = {
+  id: number;
+  uuid: string;
   name: string;
   price: number;
   imageUrl: string;
+  sugar: boolean;
+  ice: boolean;
+  hot: boolean;
+  size: boolean;
   description: string;
 };
 
@@ -20,9 +26,15 @@ export type UnaccptedOrderCardType = {
 };
 
 export type AlterDrinksType = {
+  id: number;
+  uuid: string;
   name: string;
   price: number;
   imageUrl: string;
+  sugar: boolean;
+  ice: boolean;
+  hot: boolean;
+  size: boolean;
   description: string;
 };
 
