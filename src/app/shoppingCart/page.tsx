@@ -1,8 +1,40 @@
 "use client"
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import ShoppingCartsCard from "./components/ShoppingCartsCard";
+import axios from "axios";
 
 function Page() {
   const router = useRouter();
+  const [shoppingCarts, setShoppingCarts] = useState([]);
+  const jwtToken = sessionStorage.getItem('jwt');
+  const [useruuid, setUserUUId] = useState("");
+  const [totalPrice, setTotalPrice] = useState(10);
+  
+  useEffect(() => {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwtToken;
+    axios
+      .get(process.env.api + "/getUserInfo")
+      .then((response) => {
+        setUserUUId(response.data.userId);
+        axios
+          .get(process.env.api + "/getUserShoppingCart/"+response.data.userId)
+          .then((response) => {
+            setShoppingCarts(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+          })
+      .catch((error) => {
+        console.log(error);
+      });
+  },[])
+    useEffect(() => {
+      var temp=0;
+      shoppingCarts.forEach((shoppingCart) => temp+=shoppingCart.drinkPrice);
+      setTotalPrice(temp);
+  },[shoppingCarts])
   return (
     <main className="w-2/3 mx-auto flex mt-10">
       <section className="w-1/2 mr-4">
@@ -83,18 +115,22 @@ function Page() {
         <div className="">
           <p className="text-black text-2xl font-bold">您的訂單</p>
           <p>ching shin fu chuan (Zhongli National Branch)</p>
-          <div className="flex mt-4 text-black">
-            <p className="mr-2">1x</p>
-            <div>
-              <p>珍珠奶茶</p>
-              <p>微糖</p>
-              <p>微冰</p>
-            </div>
-            <p className="ml-auto">$ 50</p>
-          </div>
+          {shoppingCarts.map((shoppingCart, index) => (
+            <ShoppingCartsCard
+              drinkName={shoppingCart.drinkName}
+              drinkId={shoppingCart.shoppingCart.id}
+              uuid={shoppingCart.shoppingCart.drinkId}
+              size={shoppingCart.shoppingCart.drinkSize}
+              sugar={shoppingCart.shoppingCart.sugar}
+              ice={shoppingCart.shoppingCart.ice}
+              key={index}
+              price={shoppingCart.drinkPrice}
+              userId={shoppingCart.shoppingCart.userId}
+            />
+          ))}
           <div className="flex justify-between mt-10">
             <p className="text-2xl text-black font-bold">總計</p>
-            <p className="text-2xl text-black font-bold">$50</p>
+            <p className="text-2xl text-black font-bold">${totalPrice}</p>
           </div>
         </div>
         <div className="flex-grow w-auto h-auto invisible"></div>

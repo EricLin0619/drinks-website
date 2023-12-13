@@ -1,6 +1,7 @@
 "use client";
 import testCouponData from "./testCouponData.json";
 import DrinkCard from "./components/drinkCard";
+import CouponsCard from "./components/couponsCard";
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -19,6 +20,13 @@ function Page() {
   const [price, setPrice] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [description, setDescription] = useState("");
+
+  const [code,setcouponCode]=useState("");
+  const [expireDatetime,setcouponExpireDatetime]=useState(0);
+  const [usetimes,setcouponUseTimes]=useState("");
+  const [discount,setcouponValue]=useState("");
+  const [coupons, setCoupons] =useState([]);
+
   
 
   const onIceOptionChange = e => {
@@ -77,7 +85,41 @@ function Page() {
         console.log(error);
       });
   }
-  
+
+  function createCoupon() {
+    let uuid = uuidv4();
+    if (!code || !expireDatetime || !usetimes || !discount) {
+      alert("請填入所有優惠卷資訊!");
+      return;
+     }
+    if(Number(usetimes)<=0 || Number(discount)<=0){
+      alert("請填入正確優惠卷資訊!");
+      return;
+    }
+    alert(expireDatetime);
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwtToken;
+    axios
+      .post(process.env.api + '/coupons/createCoupon', {
+            couponId: uuid,
+            couponCode: code,
+            couponExpireDateTime: expireDatetime,
+            couponUseTimes: usetimes,
+            couponValue: discount,
+        })
+      .then((response) => {
+          console.log(response);
+            setcouponCode("");
+            setcouponExpireDatetime(0);
+            setcouponUseTimes("");
+            setcouponValue("");
+                  
+            })
+      .catch((error) => {
+            console.log(error);
+        });
+       
+  }   
+
   useEffect(() => {
     axios
       .get(process.env.api + "/getAllMenus")
@@ -88,6 +130,18 @@ function Page() {
         console.log(error);
       });
   },[])
+  
+  useEffect(() =>{
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwtToken;
+    axios
+      .get(process.env.api + "/coupons")
+      .then(response => {
+        setCoupons(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+ },[])
   return (
     <main className="flex mx-auto w-full justify-center">
       <section className="w-1/3 shadow-md rounded-md mt-10 p-6 mr-8">
@@ -110,19 +164,16 @@ function Page() {
         ))}
 
         <p className="text-2xl font-bold text-black mb-8">優惠卷</p>
-        {testCouponData.map((coupon, index) => (
-          <div className="flex items-center justify-between w-full shadow-md rounded-md p-6">
-            <img
-              src="./coupon.png"
-              alt="coupon"
-              className="w-12 h-12 rotate-90"
+        {coupons.map((coupon, index) => (
+          <CouponsCard
+            key={index}
+            id={coupon.id}
+            uuid={coupon.couponId}
+            code={coupon.couponCode}
+            expireDatetime={coupon.couponExpireDatetime}
+            usetimes={coupon.couponUseTimes}
+            discount={coupon.couponValue}
             />
-            <div className="text-black">
-              <p className="font-bold">{coupon.name}</p>
-              <p>到期日 {coupon.duedate}</p>
-              <p>優惠卷代碼 {coupon.code}</p>
-            </div>
-          </div>
         ))}
       </section>
       <section className="w-1/3 shadow-md rounded-md mt-10 p-6">
@@ -253,10 +304,38 @@ function Page() {
           type="text"
           placeholder=""
           className="bg-white p-2 border-2 rounded-md block w-full"
+          onChange={(e)=>setcouponCode(e.target.value)}
         />
-        <button 
-          className="text-black rounded-md btn mt-4 bg-red-400 border-none"
-        >
+        <div className="label">
+        <span className="label-text mt-4">優惠卷折扣</span>
+        </div>
+        <input
+          type="number"
+          placeholder=""
+          className="bg-white p-2 border-2 rounded-md block w-full"
+          onChange={(e)=>setcouponValue(e.target.value)}
+        />
+        <div className="label">
+          <span className="label-text mt-4">優惠卷使用次數</span>
+        </div>
+        <input
+          type="number"
+          placeholder=""
+          className="bg-white p-2 border-2 rounded-md block w-full"
+          onChange={(e)=>setcouponUseTimes(e.target.value)}
+        />
+        <div className="label">
+          <span className="label-text mt-4">優惠卷到期日</span>
+        </div>
+        <input
+          type="datetime-local"
+          step="1"
+          placeholder=""
+          className="bg-white p-2 border-2 rounded-md block w-full"
+          onChange={(e)=>setcouponExpireDatetime(e.target.valueAsNumber)}
+        />
+        <button className="text-black rounded-md btn mt-4 bg-red-400 border-none"
+          onClick={() => {createCoupon()}}>
           新增
         </button>
       </section>

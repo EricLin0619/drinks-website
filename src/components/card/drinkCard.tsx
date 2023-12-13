@@ -20,7 +20,18 @@ function DrinkCard(props: DrinkCardType) {
         />
       </div>
       <div className={`flex bg-white  w-8 h-8 rounded-full absolute right-6 bottom-8`}>
-        <AddDrinkButton name={props.name} price={props.price} imageUrl={props.imageUrl}/>
+        <AddDrinkButton 
+          id={props.id}
+          uuid={props.uuid}
+          ice={props.ice}
+          hot={props.hot}
+          sugar={props.sugar}
+          size={props.size}
+          name={props.name} 
+          price={props.price} 
+          imageUrl={props.imageUrl}
+          description={props.description}
+        />
       </div>
     </div>
   );
