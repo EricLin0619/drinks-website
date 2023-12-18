@@ -1,28 +1,32 @@
+import React from "react";
+import axios from "axios";
 import { CurrentOrderCardType } from "@/type";
+import { useEffect, useState } from "react";
+
 function CurrentOrderCard(props: CurrentOrderCardType) {
+  const jwtToken = sessionStorage.getItem('jwt')
+  const [drinkName, setDrinkName] = useState("");
+  const [drinkPrice, setDrinkPrice] = useState("");
+  useEffect(() => {
+    props.menu.forEach((drink) => {
+      if(drink.drinkId === props.drinkId){
+        setDrinkName(drink.drinkName);
+        setDrinkPrice(drink.drinkPrice);
+      }
+    });
+  },[])
   return (
-    <div className="w-full rounded-md shadow-md mt-4 text-black p-6">
-      <p className="text-xl font-bold">{props.time}</p>
-      <div className="grid grid-cols-1 gap-2 mt-2">
-        {props.drinks.map((drink, index) => {
-          return (
-            <div key={index} className="flex">
-              <p>{drink.quantity}x</p>
-              <div className="ml-2">
-                <p>{drink.name}</p>
-                <p className="text-slate-400">
-                  {drink.sugar}
-                  {drink.ice}
-                </p>
-              </div>
-              <p className="ml-auto">$ {drink.price}</p>
-            </div>
-          );
-        })}
+    <div className="flex">
+      <p>1x</p>
+      <div className="ml-2">
+        <p>{drinkName}</p>
+        <p className="text-slate-400">
+          {props.sugar}
+          {props.ice}
+        </p>
       </div>
-      <button className="btn btn-success w-full mt-6">完成訂單</button>
+      <p className="ml-auto">$ {drinkPrice}</p>
     </div>
   );
 }
-
 export default CurrentOrderCard;

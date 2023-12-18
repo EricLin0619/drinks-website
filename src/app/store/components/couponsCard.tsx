@@ -3,7 +3,7 @@ import axios from "axios";
 import { CurrentCouponType } from "../../../type";
 
 function CouponsCard(props: CurrentCouponType) {
-    const expirationDate = new Date(props.expireDatetime);
+    const expirationDate = new Date(props.expireDatetime*1000);
 
     const jwtToken = sessionStorage.getItem('jwt')
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwtToken;

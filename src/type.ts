@@ -58,12 +58,38 @@ export type AlterDrinksType = {
 
 export type HistoryOrderCardType = {
   time: string;
-  drinks: Array<any>;
+  drinkId: string;
+  drinkPrice: number;
+  ice: string;
+  sugar: string;
+  size: string;
+  id: number;
+  menu: Array<any>;
 };
 
 export type CurrentOrderCardType = {
   time: string;
-  drinks: Array<any>;
+  drinkId: string;
+  drinkPrice: number;
+  ice: string;
+  sugar: string;
+  size: string;
+  id: number;
+  menu: Array<any>;
+};
+
+export type CurrentOrderType = {
+  id: number;
+  orderId: string;
+  orderDeliveryTime: number;
+  menu: Array<any>;
+};
+
+export type HistoryOrderType = {
+  id: number;
+  orderId: string;
+  orderDeliveryTime: number;
+  menu: Array<any>;
 };
 
 export type CurrentCouponType = {

@@ -332,7 +332,7 @@ function Page() {
           step="1"
           placeholder=""
           className="bg-white p-2 border-2 rounded-md block w-full"
-          onChange={(e)=>setcouponExpireDatetime(e.target.valueAsNumber)}
+          onChange={(e)=>setcouponExpireDatetime(e.target.valueAsNumber/1000)}
         />
         <button className="text-black rounded-md btn mt-4 bg-red-400 border-none"
           onClick={() => {createCoupon()}}>
