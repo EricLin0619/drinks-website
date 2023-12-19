@@ -100,7 +100,7 @@ function Page() {
         setDeliveryDatetime(0);
         setPayMethod("");
         setDeliveryLocation("");
-
+        location.reload();
       })
       .catch((error) => {
         console.log(error);
