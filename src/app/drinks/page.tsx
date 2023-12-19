@@ -20,6 +20,12 @@ function Page() {
     <section className="mx-auto w-2/3 grid grid-cols-2 justify-items-center gap-4 my-8">
       {menus.map((drink, index) => (
         <DrinkCard
+          id={drink.id}
+          uuid={drink.drinkId}
+          size={drink.drinkSize}
+          sugar={drink.sugar}
+          ice={drink.ice}
+          hot={drink.hot}
           key={index}
           name={drink.drinkName}
           price={drink.drinkPrice}

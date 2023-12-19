@@ -55,11 +55,11 @@ export default function LoginButton() {
       <dialog id="login_modal" className="modal">
         <div className="modal-box bg-white text-black p-10">
           <h3 className="font-bold text-lg text-center">
-            請輸入您註冊的電子郵件及密碼
+            請輸入您註冊的帳號及密碼
           </h3>
           <input
             type="text"
-            placeholder="電子郵件"
+            placeholder="帳號"
             className="bg-white p-2 border-2 rounded-md block w-full mt-4"
             onChange = {(e) => setUsername(e.target.value)}
           />
