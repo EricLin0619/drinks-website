@@ -1,9 +1,9 @@
 import React from "react";
 import axios from "axios";
-import { HistoryOrderCardType } from "../../../type";
+import { OrderCardType } from "../../../type";
 import { useEffect, useState } from "react";
 
-function HistoryOrderCard(props: HistoryOrderCardType) {
+function HistoryOrderCard(props: OrderCardType) {
   const jwtToken = sessionStorage.getItem('jwt')
   const [drinkName, setDrinkName] = useState("");
   const [drinkPrice, setDrinkPrice] = useState("");

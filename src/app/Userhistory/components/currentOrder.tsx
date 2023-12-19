@@ -1,11 +1,12 @@
-import { CurrentOrderType } from "@/type";
+import { OrderType } from "@/type";
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CurrentOrderCard from "./currentOrderCard";
-function CurrentOrder(props: CurrentOrderType) {
+function CurrentOrder(props: OrderType) {
   const jwtToken = sessionStorage.getItem('jwt');
   const [shoppingCarts, setShoppingCarts] = useState([]);
+  const [drinkPrice, setDrinkPrice] = useState(0);
   const orderDeliveryTime = new Date(props.orderDeliveryTime*1000);
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwtToken;
@@ -18,40 +19,17 @@ function CurrentOrder(props: CurrentOrderType) {
         console.log(error);
       });
   },[])
-
-  function updateOrderStatus() {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwtToken;
-    axios
-      .get(process.env.api + "/orders/" + props.id)
-      .then((response) => {
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwtToken;
-        axios
-          .put(process.env.api + "/orders/" + props.id, {
-            coupon: response.data.coupon,
-            createBy: response.data.createBy,
-            createDatetime: response.data.createDatetime,
-            deliveryLocation: response.data.deliveryLocation,
-            deliveryTime: response.data.deliveryTime,
-            orderId: response.data.orderId,
-            orderStatus: "完成",
-            id: props.id,
-            payMethod: response.data.payMethod,
-            totalPrice: response.data.totalPrice,
-            userId: response.data.userId
-          })
-          .then((response) => {
-            console.log(response);
-            location.reload();
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-        })
-      .catch((error) => {
-        console.log(error);
+  useEffect(() => {
+    var tempTotalPrice = 0;
+    props.menu.forEach((drinks) => {
+      shoppingCarts.forEach((drink) => {
+        if(drinks.drinkId === drink.drinkId){
+          tempTotalPrice +=drinks.drinkPrice;
+        }
       });
-  }
-
+    });
+    setDrinkPrice(tempTotalPrice);
+  },[shoppingCarts])
 
   return (
     <div className="w-full rounded-md shadow-md mt-4 text-black p-6">
@@ -68,12 +46,16 @@ function CurrentOrder(props: CurrentOrderType) {
             drinkPrice={drink.drinkPrice}
             menu={props.menu}
           />
-        ))}
-
-      <button 
-      className="btn btn-success w-full mt-6"
-      onClick={() => updateOrderStatus()}
-      >完成訂單</button>
+      ))}
+      <div className="flex items-center justify-between mt-8">
+        <p className="text-1xl font-bold">優惠碼{props.couponCode}</p>
+        <p className="text-1xl font-bold">${props.totalPrice - drinkPrice}</p>
+      </div>
+      <div className="flex items-center justify-between mt-8">
+        <p className="text-2xl font-bold">總計</p>
+        <p className="text-2xl font-bold">${props.totalPrice}</p>
+      </div>
+      <button className="btn btn-success w-full mt-6">{props.orderStatus}</button>
     </div>
   );
 }
