@@ -35,12 +35,16 @@ export type ShoppingCartType = {
   size: string;
 };
 
-export type UnaccptedOrderCardType = {
-  orderNumber: string;
-  phone: string;
-  customerName: string;
-  method: string;
-  content: Array<any>;
+export type AdminOrderType = {
+  id: number;
+  userName: string;
+  userId: string;
+  payMethod: string;
+  orderId: string;
+  orderDeliveryTime: number;
+  totalPrice: number;
+  couponCode: string;
+  menu: Array<any>;
 };
 
 export type AlterDrinksType = {
@@ -56,7 +60,7 @@ export type AlterDrinksType = {
   description: string;
 };
 
-export type HistoryOrderCardType = {
+export type OrderCardType = {
   time: string;
   drinkId: string;
   drinkPrice: number;
@@ -67,28 +71,13 @@ export type HistoryOrderCardType = {
   menu: Array<any>;
 };
 
-export type CurrentOrderCardType = {
-  time: string;
-  drinkId: string;
-  drinkPrice: number;
-  ice: string;
-  sugar: string;
-  size: string;
-  id: number;
-  menu: Array<any>;
-};
-
-export type CurrentOrderType = {
+export type OrderType = {
   id: number;
   orderId: string;
   orderDeliveryTime: number;
-  menu: Array<any>;
-};
-
-export type HistoryOrderType = {
-  id: number;
-  orderId: string;
-  orderDeliveryTime: number;
+  totalPrice: number;
+  couponCode: string;
+  orderStatus: string;
   menu: Array<any>;
 };
 
