@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const router = useRouter()
+  const [accountAuth, setAccountAuth] = useState(false)
   const [login, setLogin] = useState(false)
   const [username, setUsername] = useState('')
 
@@ -20,6 +21,9 @@ export default function Navbar() {
 
   function checkToken(jwtToken: string) {
     if(jwtToken != null) {
+      if(jwtDecode(jwtToken).auth.includes("ADMIN")){
+        setAccountAuth(true);
+      }
       if(jwtDecode(jwtToken).exp as any > Math.floor(Date.now()/1000)) {
         return true
       }
@@ -45,26 +49,38 @@ export default function Navbar() {
       </div>
       <div className="mr-32">
       { !(login) ? 
-          <>
-            <LoginButton/>
-            <RegisterButton/>
-            <img src="./shopping-cart.png" alt="shopping-cart" className='w-8 h-8 cursor-pointer' onClick={()=>{router.push("./shoppingCart")}}/>
-            <img src="./user.png" alt="shopping-cart" className='w-7 h-7 cursor-pointer ml-4' onClick={()=>{router.push("./userData")}}/>
-            <img src="./user.png" alt="shopping-cart" className='w-7 h-7 cursor-pointer ml-4' onClick={()=>{router.push("./Userhistory")}}/>
-            <img src="./store.png" alt="shopping-cart" className='w-7 h-7 cursor-pointer ml-4' onClick={()=>{router.push("./store")}}/>
-            <span className="cursor-pointer text-black ml-4" onClick={()=>{router.push("./orderManagement")}}>接單</span>
-          </>
-          :
-          <>
-            <p className="px-5 text-black">{username} 您好</p>
-            <LogoutButton/>
-            <img src="./shopping-cart.png" alt="shopping-cart" className='w-8 h-8 cursor-pointer' onClick={()=>{router.push("./shoppingCart")}}/>
-            <img src="./user.png" alt="shopping-cart" className='w-7 h-7 cursor-pointer ml-4' onClick={()=>{router.push("./userData")}}/>
-            <img src="./user.png" alt="shopping-cart" className='w-7 h-7 cursor-pointer ml-4' onClick={()=>{router.push("./Userhistory")}}/>
-            <img src="./store.png" alt="shopping-cart" className='w-7 h-7 cursor-pointer ml-4' onClick={()=>{router.push("./store")}}/>
-            <span className="cursor-pointer text-black ml-4" onClick={()=>{router.push("./orderManagement")}}>接單</span>
-          </>
-        }
+        <>
+          <LoginButton/>
+          <RegisterButton/>
+        </>
+        :
+        <>
+          <p className="px-5 text-black">{username} 您好</p>
+          <LogoutButton/>
+        </>
+      }
+      { accountAuth&&login ? 
+        <>
+          <img src="./shopping-cart.png" alt="shopping-cart" className='w-8 h-8 cursor-pointer' onClick={()=>{router.push("./shoppingCart")}}/>
+          <img src="./user.png" alt="shopping-cart" className='w-7 h-7 cursor-pointer ml-4' onClick={()=>{router.push("./userData")}}/>
+          <img src="./user.png" alt="shopping-cart" className='w-7 h-7 cursor-pointer ml-4' onClick={()=>{router.push("./Userhistory")}}/>
+          <img src="./store.png" alt="shopping-cart" className='w-7 h-7 cursor-pointer ml-4' onClick={()=>{router.push("./store")}}/>
+          <span className="cursor-pointer text-black ml-4" onClick={()=>{router.push("./orderManagement")}}>接單</span>
+        </>
+        :
+        <>
+        </>
+      }
+      { !accountAuth&&login ? 
+        <>
+          <img src="./shopping-cart.png" alt="shopping-cart" className='w-8 h-8 cursor-pointer' onClick={()=>{router.push("./shoppingCart")}}/>
+          <img src="./user.png" alt="shopping-cart" className='w-7 h-7 cursor-pointer ml-4' onClick={()=>{router.push("./userData")}}/>
+          <img src="./user.png" alt="shopping-cart" className='w-7 h-7 cursor-pointer ml-4' onClick={()=>{router.push("./Userhistory")}}/>
+        </>
+        :
+        <>
+        </>
+      }
       </div>
       <div className="flex-none">
         <button className="btn btn-square btn-ghost">
