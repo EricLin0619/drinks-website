@@ -135,7 +135,7 @@ function Page() {
             type="datetime-local"
             step="1"
             placeholder=""
-            className="bg-white p-2 border-2 rounded-md block w-full"
+            className="bg-white p-2 border-2 rounded-md block w-full mt-3"
             onChange={(e)=>setDeliveryDatetime(e.target.valueAsNumber)}
           />
         </div>
