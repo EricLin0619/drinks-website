@@ -33,11 +33,11 @@ function CouponsCard(props: CurrentCouponType) {
          <img
             src="./coupon.png"
             alt="coupon"
-            className="w-24 h-24 rotate-90"
+            className="w-16 h-16 rotate-90"
           />
           <div className="mr-4">
             <p className="font-bold">優惠卷代碼</p>
-            <p className="text-black font-bold text-xl">{props.code}</p>
+            <p className="text-black font-bold">{props.code}</p>
             <p className="font-bold">優惠卷折扣</p>
             <p className="text-black font-bold ">{`${props.discount} 元`}</p>
             <p className="font-bold">優惠卷使用次數</p>

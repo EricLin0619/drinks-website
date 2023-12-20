@@ -1,0 +1,42 @@
+[
+    {
+        "time": "2023/12",
+        "drinks": [
+            {
+                "name": "拾JOE芝麻歐蕾",
+                "price": 75,
+                "amount": 20
+            },
+            {
+                "name": "橙芝汗",
+                "price": 87,
+                "amount": 55
+            },
+            {
+                "name": "愛荔殺殺",
+                "price": 78,
+                "amount": 60
+            }
+        ]
+    },
+    {
+        "time": "2023/11",
+        "drinks": [
+            {
+                "name": "拾JOE芝麻歐蕾",
+                "price": 75,
+                "amount": 20
+            },
+            {
+                "name": "橙芝汗",
+                "price": 87,
+                "amount": 55
+            },
+            {
+                "name": "愛荔殺殺",
+                "price": 78,
+                "amount": 60
+            }
+        ]
+    }
+]

@@ -15,25 +15,27 @@ function Page() {
       .catch((error) => {
         console.log(error);
       });
-  },[])
+  }, []);
   return (
-    <section className="mx-auto w-2/3 grid grid-cols-2 justify-items-center gap-4 my-8">
-      {menus.map((drink, index) => (
-        <DrinkCard
-          id={drink.id}
-          uuid={drink.drinkId}
-          size={drink.drinkSize}
-          sugar={drink.sugar}
-          ice={drink.ice}
-          hot={drink.hot}
-          key={index}
-          name={drink.drinkName}
-          price={drink.drinkPrice}
-          imageUrl={drink.drinkPictureURL}
-          description={drink.toppings}
-        />
-      ))}
-    </section>
+    <main className="grow">
+      <section className="mx-auto w-2/3 grid grid-cols-2 justify-items-center gap-4 my-8">
+        {menus.map((drink, index) => (
+          <DrinkCard
+            id={drink.id}
+            uuid={drink.drinkId}
+            size={drink.drinkSize}
+            sugar={drink.sugar}
+            ice={drink.ice}
+            hot={drink.hot}
+            key={index}
+            name={drink.drinkName}
+            price={drink.drinkPrice}
+            imageUrl={drink.drinkPictureURL}
+            description={drink.toppings}
+          />
+        ))}
+      </section>
+    </main>
   );
 }
 

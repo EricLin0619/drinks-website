@@ -56,7 +56,7 @@ function Page() {
   },[])
 
   return (
-    <main className="w-1/2 rounded-md shadow-md mt-10 mx-auto p-6">
+    <main className="grow w-1/2 rounded-md shadow-md mt-10 mx-auto p-6">
       <p className="text-2xl font-bold text-black">當前訂單</p>
       {ordersNow.map((order, index) => (
           <CurrentOrder
