@@ -1,17 +1,16 @@
-import { HistoryOrderCardType } from "@/type";
-import { HistoryOrderType } from "@/type";
+import { OrderType } from "@/type";
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import HistoryOrderCard from "./historyOrderCard";
 
-function HistoryOrder(props: HistoryOrderType) {
+function HistoryOrder(props: OrderType) {
   const jwtToken = sessionStorage.getItem('jwt');
   const orderDeliveryTime = new Date(props.orderDeliveryTime*1000);
   const [shoppingCarts, setShoppingCarts] = useState([]);
+  const [drinkPrice, setDrinkPrice] = useState(0);
   const [menus, setMenus] = useState([]);
   useEffect(() => {
-    var temp=false;
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwtToken;
     axios
       .get(process.env.api + "/userOrders/"+props.orderId)
@@ -22,6 +21,17 @@ function HistoryOrder(props: HistoryOrderType) {
         console.log(error);
       });
   },[])
+  useEffect(() => {
+    var tempTotalPrice = 0;
+    props.menu.forEach((drinks) => {
+      shoppingCarts.forEach((drink) => {
+        if(drinks.drinkId === drink.drinkId){
+          tempTotalPrice +=drinks.drinkPrice;
+        }
+      });
+    });
+    setDrinkPrice(tempTotalPrice);
+  },[shoppingCarts])
 
   return (
     <div className="w-full rounded-md shadow-md mt-4 text-black p-6">
@@ -39,6 +49,14 @@ function HistoryOrder(props: HistoryOrderType) {
             menu={props.menu}
           />
         ))}
+      <div className="flex items-center justify-between mt-8">
+        <p className="text-1xl font-bold">優惠碼{props.couponCode}</p>
+        <p className="text-1xl font-bold">${props.totalPrice - drinkPrice}</p>
+      </div>
+      <div className="flex items-center justify-between mt-8">
+        <p className="text-2xl font-bold">總計</p>
+        <p className="text-2xl font-bold">${props.totalPrice}</p>
+      </div>
     </div>
   );
 }

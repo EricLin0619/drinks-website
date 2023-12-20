@@ -1,9 +1,9 @@
 import React from "react";
 import axios from "axios";
-import { OrderCardType } from "../../../type";
+import { OrderCardType} from "@/type";
 import { useEffect, useState } from "react";
 
-function HistoryOrderCard(props: OrderCardType) {
+function OrderCard(props: OrderCardType) {
   const jwtToken = sessionStorage.getItem('jwt')
   const [drinkName, setDrinkName] = useState("");
   const [drinkPrice, setDrinkPrice] = useState("");
@@ -29,4 +29,4 @@ function HistoryOrderCard(props: OrderCardType) {
     </div>
   );
 }
-export default HistoryOrderCard;
+export default OrderCard;

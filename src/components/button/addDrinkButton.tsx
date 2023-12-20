@@ -88,7 +88,7 @@ function AddDrinkButton(props: AddDrinkButtonType) {
           />
           <h3 className="font-bold text-2xl ml-6 mt-4">{props.name}</h3>
           <h3 className="ml-6 text-base">．{props.description}</h3>
-          <h3 className="ml-6 mt-6 font-bold text-xl">$ 75</h3>
+          <h3 className="ml-6 mt-6 font-bold text-xl">$ {props.price}</h3>
           <div className="divider mx-6 text-[#808080]"></div>
           {props.size?<div className="p-4 m-6 bg-[#00C0FF] rounded bg-opacity-40">
             <p className="font-bold text-lg">飲料大小</p>
@@ -97,7 +97,7 @@ function AddDrinkButton(props: AddDrinkButtonType) {
               <div className="flex items-center justify-between mb-3">
                 <input
                   type="radio"
-                  name="sugar"
+                  name="size"
                   value="L"
                   className="radio radio-primary block "
                   onChange = {(e) => setSize(e.target.value)}
@@ -107,7 +107,7 @@ function AddDrinkButton(props: AddDrinkButtonType) {
               <div className="flex items-center justify-between mb-3">
                 <input
                   type="radio"
-                  name="sugar"
+                  name="size"
                   value="M"
                   className="radio radio-primary block "
                   onChange = {(e) => setSize(e.target.value)}
@@ -117,7 +117,7 @@ function AddDrinkButton(props: AddDrinkButtonType) {
               <div className="flex items-center justify-between mb-3">
                 <input
                   type="radio"
-                  name="sugar"
+                  name="size"
                   value="S"
                   className="radio radio-primary block "
                   onChange = {(e) => setSize(e.target.value)}

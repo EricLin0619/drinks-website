@@ -16,32 +16,43 @@ function Page() {
   useEffect(() => {
     var tempNow=[];
     var tempPast=[];
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwtToken;
-    axios
-      .get(process.env.api + "/orders")
-      .then((response) => {
-        axios
-          .get(process.env.api + "/getAllMenus")
-          .then((response) => {
-            setMenus(response.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-        response.data.forEach((order) => {
-          if(order.orderStatus==="待處理"){
-            tempNow.push([order.orderId, order.deliveryTime, order.id]);
-          }
-          else{
-            tempPast.push([order.orderId, order.deliveryTime, order.id]);
-          }
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwtToken;
+      axios
+        .get(process.env.api + "/getUserInfo")
+        .then((response) => {
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwtToken;
+          axios
+            .post(process.env.api + "/customerReadOrder", {
+              orderStatus: "",
+              userId: response.data.userId
+            })
+            .then((orderResponse) => {
+              axios
+                .get(process.env.api + "/getAllMenus")
+                .then((response) => {
+                  setMenus(response.data);
+                  orderResponse.data.forEach((order) => {
+                    if(order.order.orderStatus==="待處理"){
+                      tempNow.push([order.order.orderId, order.order.deliveryTime, order.order.id, order.order.totalPrice, order.order.coupon, order.order.orderStatus]);
+                    }
+                    else if(order.order.orderStatus==="完成"){
+                      tempPast.push([order.order.orderId, order.order.deliveryTime, order.order.id, order.order.totalPrice, order.order.coupon, order.order.orderStatus]);
+                    }
+                  });
+                  setOrdersNow(tempNow);
+                  setOrdersPast(tempPast);
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        })
+        .catch((error) => {
+          console.log(error);
         });
-        setOrdersNow(tempNow);
-        setOrdersPast(tempPast);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   },[])
 
   return (
@@ -52,6 +63,9 @@ function Page() {
             orderId={order[0]}
             orderDeliveryTime={order[1]}
             id={order[2]}
+            totalPrice={order[3]}
+            couponCode={order[4]}
+            orderStatus={order[5]}
             menu={menus}
           />
         ))}
@@ -61,6 +75,9 @@ function Page() {
             orderId={order[0]}
             orderDeliveryTime={order[1]}
             id={order[2]}
+            totalPrice={order[3]}
+            couponCode={order[4]}
+            orderStatus={order[5]}
             menu={menus}
           />
         ))}
