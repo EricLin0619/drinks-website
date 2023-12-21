@@ -89,3 +89,11 @@ export type CurrentCouponType = {
   discount: number;
   usetimes: number;
 };
+
+export type ReportType = {
+  year: number;
+  month: number;
+  drinkName: [];
+  drinkPrice: [];
+  drinksAmount: [];
+};
