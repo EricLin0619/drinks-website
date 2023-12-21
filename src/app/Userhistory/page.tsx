@@ -32,11 +32,11 @@ function Page() {
                 .then((response) => {
                   setMenus(response.data);
                   orderResponse.data.forEach((order) => {
-                    if(order.order.orderStatus==="待處理"){
-                      tempNow.push([order.order.orderId, order.order.deliveryTime, order.order.id, order.order.totalPrice, order.order.coupon, order.order.orderStatus]);
-                    }
-                    else if(order.order.orderStatus==="完成"){
+                    if(order.order.orderStatus==="完成"){
                       tempPast.push([order.order.orderId, order.order.deliveryTime, order.order.id, order.order.totalPrice, order.order.coupon, order.order.orderStatus]);
+                    }
+                    else {
+                      tempNow.push([order.order.orderId, order.order.deliveryTime, order.order.id, order.order.totalPrice, order.order.coupon, order.order.orderStatus]);
                     }
                   });
                   setOrdersNow(tempNow);
