@@ -39,6 +39,7 @@ export default function LoginButton() {
       })
       .catch((error) => {
         console.log(error);
+        alert("帳號或密碼錯誤")
       });
   }
 
