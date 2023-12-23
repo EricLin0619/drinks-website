@@ -45,6 +45,7 @@ function AlterCouponDataButton(props: CurrentCouponType) {
         setcouponExpireDatetime(0);
         setcouponUseTimes("");
         setcouponValue("");
+        location.reload();
       })
       .catch((error) => {
         console.log(error);
