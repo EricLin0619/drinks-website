@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { CurrentCouponType } from "../../../type";
+import AlterCouponDataButton from "./AlterCouponDataButton";
 
 function CouponsCard(props: CurrentCouponType) {
     const expirationDate = new Date(props.expireDatetime*1000);
@@ -66,6 +67,15 @@ function CouponsCard(props: CurrentCouponType) {
             <p className="text-black font-bold">{expirationDate.getFullYear() + "年" + (expirationDate.getMonth()+1) + "月" + expirationDate.getDate() + "日" + expirationDate.getUTCHours() + "點" + expirationDate.getMinutes() + "分" }</p>
         </div>
         <div className="mr-4">
+          <AlterCouponDataButton 
+            id={props.id}
+            uuid={props.uuid}
+            code={props.code}
+            expireDatetime={props.expireDatetime}
+            usetimes={props.usetimes}
+            discount={props.discount}
+          />
+          <p className="font-bold mt-10"></p>
           <span 
             className="text-red-400 font-bold cursor-pointer"
             onClick={() => {

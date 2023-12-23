@@ -96,7 +96,6 @@ function Page() {
       alert("請填入正確優惠卷資訊!");
       return;
     }
-    alert(expireDatetime);
     axios.defaults.headers.common["Authorization"] = "Bearer " + jwtToken;
     axios
       .post(process.env.api + "/coupons/createCoupon", {
