@@ -20,6 +20,8 @@ function Page() {
   const [price, setPrice] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [description, setDescription] = useState("");
+  const [orderRule, setOrderRule] = useState([]);
+  const [orderRuleStatus, setOrderRuleStatus] = useState(false);
 
   const [code, setcouponCode] = useState("");
   const [expireDatetime, setcouponExpireDatetime] = useState(0);
@@ -46,13 +48,13 @@ function Page() {
       return alert("username is empty");
     }
     if (!price) {
-      return alert("password is empty");
+      return alert("price is empty");
     }
     if (!imageUrl) {
-      return alert("username is empty");
+      return alert("imageUrl is empty");
     }
     if (!description) {
-      return alert("password is empty");
+      return alert("description is empty");
     }
     axios.defaults.headers.common["Authorization"] = "Bearer " + jwtToken;
     axios
@@ -94,7 +96,6 @@ function Page() {
       alert("請填入正確優惠卷資訊!");
       return;
     }
-    alert(expireDatetime);
     axios.defaults.headers.common["Authorization"] = "Bearer " + jwtToken;
     axios
       .post(process.env.api + "/coupons/createCoupon", {
@@ -116,11 +117,49 @@ function Page() {
       });
   }
 
+  function updateOrderRule() {
+    if (orderRuleStatus===orderRule[0].orderStatus&&orderRuleStatus===false) {
+      alert("已經限制了");
+      return;
+    }
+    if (orderRuleStatus===orderRule[0].orderStatus&&orderRuleStatus===true) {
+      alert("已經關閉限制了");
+      return;
+    }
+    axios.defaults.headers.common["Authorization"] = "Bearer " + jwtToken;
+    axios
+      .put(process.env.api + "/order-rules/" + orderRule[0].id, {
+        id: orderRule[0].id,
+        orderStatus: orderRuleStatus,
+        orderFrequency: orderRule[0].orderFrequency
+      })
+      .then((response) => {
+        console.log(response);
+        setOrderRuleStatus(false);
+        location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   useEffect(() => {
     axios
       .get(process.env.api + "/getAllMenus")
       .then((response) => {
         setMenus(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(process.env.api + "/order-rules")
+      .then((response) => {
+        setOrderRule(response.data);
+        console.log(response.data)
       })
       .catch((error) => {
         console.log(error);
@@ -340,6 +379,34 @@ function Page() {
         >
           新增
         </button>
+        <p className="text-2xl font-bold text-black mt-10">調整外送規則</p>
+        <div className="rounded-md shadow-md p-6 mt-8">
+          <p className="text-xl font-bold text-black">限制同時段單數</p>
+          <div className="flex items-center mt-8 justify-between">
+            <input
+              type="radio"
+              name="hot"
+              className="radio radio-primary block "
+              onChange={() => setOrderRuleStatus(true)}
+            />
+            <p className="text-black">開啟</p>
+            <input
+              type="radio"
+              name="hot"
+              className="radio radio-primary block "
+              onChange={() => setOrderRuleStatus(false)}
+            />
+            <p className="text-black">關閉</p>
+          </div>
+          <button
+            className="text-black rounded-md btn mt-4 bg-red-400 border-none"
+            onClick={() => {
+              updateOrderRule();
+            }}
+          >
+            修改
+          </button>
+        </div>
       </section>
     </main>
   );

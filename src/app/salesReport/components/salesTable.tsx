@@ -1,8 +1,29 @@
-function SalesTable(props: any) {
+"use client";
+import React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { ReportType } from "../../../type";
+
+function SalesTable(props: ReportType) {
+  const [menus, setMenus] = useState([]);
+  const [first, setFirst] = useState(true);
+  const [price, setPrice] = useState("");
+  const jwtToken = sessionStorage.getItem("jwt");
+  useEffect(() => {
+    var tempMenus = []
+    for(var i = 0; i < props.drinkName.length; i++){
+      tempMenus.push({
+        drinkName: props.drinkName[i],
+        drinkPrice: props.drinkPrice[i],
+        drinksAmount: props.drinksAmount[i]
+      })
+    }
+    setMenus(tempMenus)
+  }, []);
   let avenue = 0;
   return (
     <div className="rounded-md shadow-md p-6">
-      <p className="text-black font-bold text-xl mb-2">{props.time}</p>
+      <p className="text-black font-bold text-xl mb-2">{props.year}/{props.month+1}</p>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -15,13 +36,13 @@ function SalesTable(props: any) {
           </thead>
           <tbody>
             {/* row 1 */}
-            {props.drinks.map((item) => {
-              avenue += item.price * item.amount;
+            {menus.map((item) => {
+              avenue += item.drinkPrice * item.drinksAmount
               return (
                 <tr>
-                  <td>{item.name}</td>
-                  <td>{item.price}</td>
-                  <td>{item.amount}</td>
+                  <td>{item.drinkName}</td>
+                  <td>{item.drinkPrice}</td>
+                  <td>{item.drinksAmount}</td>
                 </tr>
               );
             })}

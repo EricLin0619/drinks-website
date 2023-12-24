@@ -65,6 +65,7 @@ function AddDrinkButton(props: AddDrinkButtonType) {
         setIce("");
         setSugar("");
         setSize("");
+        alert("成功加入購物車")
         location.reload();
       })
       .catch((error) => {

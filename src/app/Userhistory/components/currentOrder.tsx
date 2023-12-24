@@ -7,6 +7,7 @@ function CurrentOrder(props: OrderType) {
   const jwtToken = sessionStorage.getItem('jwt');
   const [shoppingCarts, setShoppingCarts] = useState([]);
   const [drinkPrice, setDrinkPrice] = useState(0);
+  const [userUuid, setUserUuid] = useState("");
   const orderDeliveryTime = new Date(props.orderDeliveryTime*1000);
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwtToken;
@@ -30,6 +31,29 @@ function CurrentOrder(props: OrderType) {
     });
     setDrinkPrice(tempTotalPrice);
   },[shoppingCarts])
+  function deleteOrder() {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwtToken;
+    axios
+      .get(process.env.api + "/getUserInfo")
+      .then((response) => {
+        setUserUuid(response.data.userId);
+        axios
+          .post(process.env.api + "/customerDeleteOrder",{
+            orderId: props.orderId,
+            userId: response.data.userId
+          })
+          .then((response) => {
+            alert("成功刪除")
+            location.reload();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+          })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   return (
     <div className="w-full rounded-md shadow-md mt-4 text-black p-6">
@@ -55,7 +79,19 @@ function CurrentOrder(props: OrderType) {
         <p className="text-2xl font-bold">總計</p>
         <p className="text-2xl font-bold">${props.totalPrice}</p>
       </div>
-      <button className="btn btn-success w-full mt-6">{props.orderStatus}</button>
+      <div className="flex items-center justify-between mt-8">
+        <button className="btn btn-disabled mt-6">{props.orderStatus}</button>
+        { props.orderStatus==="待處理" ? 
+          <>
+            <button className="btn btn-success mt-6"onClick={() => deleteOrder()}>取消訂單</button>
+          </>
+          :
+          <>
+            <button className="btn btn-disabled mt-6"onClick={() => deleteOrder()}>取消訂單</button>
+          </>
+        }
+        
+      </div>
     </div>
   );
 }

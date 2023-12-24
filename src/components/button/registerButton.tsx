@@ -54,10 +54,12 @@ export default function RegisterButton() {
         setLogin("");
         setName("");
         setPhoneNumber("");
+        alert("註冊成功")
         location.reload();
       })
       .catch((error) => {
         console.log(error);
+        alert(error.response.data.title)
       });
   }
 
