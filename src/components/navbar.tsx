@@ -70,14 +70,14 @@ export default function Navbar() {
         )}
         {accountAuth && login ? (
           <>
-            <AdminDropDown />
+            <AdminDropDown changeLoginState={setLogin}/>
           </>
         ) : (
           <></>
         )}
         {!accountAuth && login ? (
           <>
-            <UserDropDown />
+            <UserDropDown changeLoginState={setLogin}/>
           </>
         ) : (
           <></>

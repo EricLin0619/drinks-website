@@ -2,13 +2,15 @@
 
 import { useRouter } from "next/navigation";
 
-function UserDropDown() {
+function UserDropDown(props: any) {
   const router = useRouter();
   function logout() {
     sessionStorage.removeItem("jwt");
+    props.changeLoginState(false);
     router.push("/");
-    location.reload();
+   
   }
+  
   return (
     <div className="flex-none gap-2">
       <div className="dropdown dropdown-end">
