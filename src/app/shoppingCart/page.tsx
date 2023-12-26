@@ -159,7 +159,7 @@ function Page() {
             className="p-2 rounded-md bg-white shadow-md mt-4 text-black"
             onChange = {(e) => setCoupon(e.target.value)}
           />
-          <p className="text-red-400 font-bold">{couponCheck}</p>
+          <span className="text-red-400 font-bold ml-4">{couponCheck}</span>
         </div>
         <div className="rounded-md shadow-md p-6 mt-8">
           <p className="text-2xl font-bold text-black">取貨方式</p>
