@@ -26,13 +26,15 @@ function ShoppingCartsCard(props: ShoppingCartType) {
         <p>{props.ice}</p>
         <p>{props.size}</p>
       </div>
-      <p className="ml-auto">$ {props.price}</p>
-      <button 
-        className="text-black rounded-md btn mt-4 bg-red-400 border-none"
-        onClick={() => deleteShoppingCart(props.drinkId)}
-      >
-        移除
-      </button>
+      <div className="ml-auto">
+        <p className="ml-auto">$ {props.price}</p>
+        <button 
+          className="text-black rounded-md btn mt-4 bg-red-400 border-none"
+          onClick={() => deleteShoppingCart(props.drinkId)}
+        >
+          移除
+        </button>
+      </div>
     </div>
     
   );
