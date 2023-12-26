@@ -32,9 +32,13 @@ function unsolvedOrder(props: AdminOrderType) {
     }
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + jwtToken;
     axios
-      .get(process.env.api + "/getUserInfo")
+      .get(process.env.api + "/user-infos")
       .then((response) => {
-        setUserPhone(response.data.userPhone);
+        response.data.forEach((user) => {
+          if(user.userId === props.userId){
+            setUserPhone(user.phoneNumber);
+          }
+        });
       })
       .catch((error) => {
         console.log(error);
