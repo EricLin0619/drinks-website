@@ -1,12 +1,13 @@
 "use client";
 import { useRouter } from "next/navigation";
 
-function AdminDropDown() {
+function AdminDropDown(props: any) {
   const router = useRouter();
   function logout() {
     sessionStorage.removeItem("jwt");
+    props.changeLoginState(false);
     router.push("/");
-    location.reload();
+   
   }
 
   return (
