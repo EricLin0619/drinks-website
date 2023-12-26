@@ -162,7 +162,7 @@ function Page() {
           <p className="text-red-400 font-bold">{couponCheck}</p>
         </div>
         <div className="rounded-md shadow-md p-6 mt-8">
-          <p className="text-2xl font-bold text-black">付款方式</p>
+          <p className="text-2xl font-bold text-black">取貨方式</p>
           <div className="flex items-center mt-8 justify-between">
             <input
               type="radio"
@@ -171,7 +171,7 @@ function Page() {
               className="radio radio-primary block "
               onChange = {(e) => setPayMethod(e.target.value)}
             />
-            <p className="text-black">現金付款</p>
+            <p className="text-black">外帶</p>
           </div>
           <div className="flex items-center mt-4 justify-between">
             <input
@@ -181,7 +181,7 @@ function Page() {
               className="radio radio-primary block "
               onChange = {(e) => setPayMethod(e.target.value)}
             />
-            <p className="text-black">Line pay</p>
+            <p className="text-black">外送</p>
           </div>
         </div>
         <button className="btn btn-info mt-8 w-full text-center"

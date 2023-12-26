@@ -379,9 +379,9 @@ function Page() {
         >
           新增
         </button>
-        <p className="text-2xl font-bold text-black mt-10">調整外送規則</p>
+        <p className="text-2xl font-bold text-black mt-10">外送規則調整</p>
         <div className="rounded-md shadow-md p-6 mt-8">
-          <p className="text-xl font-bold text-black">限制同時段單數</p>
+          <p className="text-xl font-bold text-black">接單功能</p>
           <div className="flex items-center mt-8 justify-between">
             <input
               type="radio"
