@@ -1,14 +1,14 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 
-function AdminDropDown() {
+function UserDropDown() {
   const router = useRouter();
   function logout() {
     sessionStorage.removeItem("jwt");
     router.push("/");
     location.reload();
   }
-
   return (
     <div className="flex-none gap-2">
       <div className="dropdown dropdown-end">
@@ -44,62 +44,6 @@ function AdminDropDown() {
           </li>
           <li
             onClick={() => {
-              router.push("./Userhistory");
-            }}
-          >
-            <div className="flex">
-              <img
-                src="./order.png"
-                alt="shopping-cart"
-                className="w-8 h-8 cursor-pointer"
-              />
-              <a className="ml-auto">歷史訂單</a>
-            </div>
-          </li>
-          <li
-            onClick={() => {
-              router.push("./store");
-            }}
-          >
-            <div className="flex">
-              <img
-                src="./store.png"
-                alt="shopping-cart"
-                className="w-7 h-7 cursor-pointer"
-              />
-              <a className="ml-auto">資源控制台</a>
-            </div>
-          </li>
-          <li
-            onClick={() => {
-              router.push("./orderManagement");
-            }}
-          >
-            <div className="flex">
-              <img
-                src="./hand.png"
-                alt="shopping-cart"
-                className="w-7 h-7 cursor-pointer"
-              />
-              <a className="ml-auto">接收訂單</a>
-            </div>
-          </li>
-          <li
-            onClick={() => {
-              router.push("./salesReport");
-            }}
-          >
-            <div className="flex">
-              <img
-                src="./salesReport.png"
-                alt="shopping-cart"
-                className="w-7 h-7 cursor-pointer"
-              />
-              <a className="ml-auto">銷售報表</a>
-            </div>
-          </li>
-          <li
-            onClick={() => {
               router.push("./shoppingCart");
             }}
           >
@@ -112,6 +56,21 @@ function AdminDropDown() {
               <a className="ml-auto">購物車</a>
             </div>
           </li>
+          <li
+            onClick={() => {
+              router.push("./Userhistory");
+            }}
+          >
+            <div className="flex">
+              <img
+                src="./order.png"
+                alt="shopping-cart"
+                className="w-8 h-8 cursor-pointer"
+              />
+              <a className="ml-auto">歷史訂單</a>
+            </div>
+          </li>
+
           <li
             onClick={() => {
               logout();
@@ -132,4 +91,4 @@ function AdminDropDown() {
   );
 }
 
-export default AdminDropDown;
+export default UserDropDown;

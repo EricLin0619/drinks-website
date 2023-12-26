@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 import LogoutButton from "./button/logoutButton";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
-import AdminDropDown from "./adminDropDown";
+import AdminDropDown from "./adminDropDown"
+import UserDropDown from "./userDropDown";
 
 export default function Navbar() {
   const router = useRouter();
@@ -64,7 +65,7 @@ export default function Navbar() {
           </>
         ) : (
           <>
-            <p className="px-5 text-black">{username=="admin" && "管理員"} </p>
+            <p className="px-5 text-black">{username=="admin" ? "管理員": username} </p>
           </>
         )}
         {accountAuth && login ? (
@@ -76,30 +77,7 @@ export default function Navbar() {
         )}
         {!accountAuth && login ? (
           <>
-            <img
-              src="./shopping-cart.png"
-              alt="shopping-cart"
-              className="w-8 h-8 cursor-pointer"
-              onClick={() => {
-                router.push("./shoppingCart");
-              }}
-            />
-            <img
-              src="./user.png"
-              alt="shopping-cart"
-              className="w-7 h-7 cursor-pointer ml-4"
-              onClick={() => {
-                router.push("./userData");
-              }}
-            />
-            <img
-              src="./user.png"
-              alt="shopping-cart"
-              className="w-7 h-7 cursor-pointer ml-4"
-              onClick={() => {
-                router.push("./Userhistory");
-              }}
-            />
+            <UserDropDown />
           </>
         ) : (
           <></>
